@@ -9,8 +9,9 @@
 #ifndef coffemaker_h
 #define coffemaker_h
 #include <iostream>
-using namespace std;
+#include <unistd.h>
 
+using namespace std;
 
 class Milk {
 private:
@@ -20,35 +21,44 @@ public:
     string getMilkType(){return mType;}
 };
 
-class Drink {
+class Coffee {
 private:
     string dType;
 public:
-    void setDrinkType(string dt){dType = dt;}
-    string getDrinkType(){return dType;};
+    void setCoffeeType(string dt){dType = dt;}
+    string getCofeeType(){return dType;};
+    
+};
+
+class Cappuccino: public Coffee{
+private:
+    string flavour;
+    Milk m;
+public:
+    void SetMilk(Milk cm){m=cm;}
     void Make(Milk m){
         if (m.getMilkType() == "") {
             m.setMilkType("normal");
         }
-        cout << "make" << dType << " using milk " << m.getMilkType() <<endl;
+        cout << "making " << "Cappuccino" << " using milk " << m.getMilkType() <<endl;
     }
-    
 };
 
-class Cappuccino: public Drink{
+class Esspresso: public Coffee{
 private:
     string flavour;
-    Milk m;
 public:
-    void SetMilk(Milk cm){m=cm;}
+    void Make(){
+        cout << "making " << "Esspresso" <<endl;
+    }
 };
 
-class Esspresso: public Drink{
-private:
-    string flavour;
-    Milk m;
-public:
-    void SetMilk(Milk cm){m=cm;}
-};
-
+void status(int timer){
+    for (int i=0; i< timer; i++){
+        cout << ".";
+        fflush(stdout);
+        sleep(1);
+    }
+    cout << endl;
+}
 #endif /* coffemaker_h */

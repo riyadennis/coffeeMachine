@@ -11,37 +11,45 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    Drink d;
-    int dType;
+    Coffee c;
+    int cType;
+    bool success;
     cout << "Please select your drink" << endl;
     cout << "1. Cappuccino" << endl;
     cout << "2. Esspresso" << endl;
     cout << "3. Americano" << endl;
     cout << "4. Latte" << endl;
-    cin >> dType;
+    cin >> cType;
     
     Milk m;
     m.setMilkType("Soya");
     
-    switch (dType) {
+    switch (cType) {
         case 1: {
-            Cappuccino c;
-            d.setDrinkType("Cappuccino");
-            c.SetMilk(m);
+            Cappuccino ca;
+            c.setCoffeeType("Cappuccino");
+            ca.SetMilk(m);
+            ca.Make(m);
+            success = true;
             break;
         }
         case 2: {
             Esspresso e;
-            d.setDrinkType("Esspresso");
-            e.SetMilk(m);
+            e.Make();
+            c.setCoffeeType("Esspresso");
+            success = true;
             break;
         }
         default:{
-            cout << "machine not ready to process your option";
+            cout << "machine not ready to process your option" << endl;
+            success = false;
             break;
         }
     }
-    d.Make(m);
-    cout << d.getDrinkType() << endl;
+    status(20);
+    if (success){
+        cout << "Your " << c.getCofeeType() << " is ready "<< endl;
+    }
+    
     return 0;
 }
