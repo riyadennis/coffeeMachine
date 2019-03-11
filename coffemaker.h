@@ -1,11 +1,3 @@
-//
-//  coffemaker.h
-//  CoffeeMaker
-//
-//  Created by Riya Dennis on 10/03/2019.
-//  Copyright © 2019 Riya Dennis. All rights reserved.
-//
-
 #ifndef coffemaker_h
 #define coffemaker_h
 #include <iostream>
