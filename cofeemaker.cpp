@@ -17,4 +17,3 @@ int main(int argc, const char * argv[]) {
     cout << "Your " << c->getCofeeType() << " is ready "<< endl;
     return 0;
 }
-

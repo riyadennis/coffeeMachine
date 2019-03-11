@@ -24,10 +24,14 @@ public:
 class Coffee {
 protected:
     string dType;
+    string flavour;
 public:
     Coffee(){};
     string getType(){return dType;}
     void setCoffeeType(string dt){dType = dt;}
+    void setFlavour(string flavour){
+        this->flavour =flavour;
+    }
     string getCofeeType(){return dType;};
     void status(int timer){
         for (int i=0; i< timer; i++){
@@ -58,12 +62,14 @@ public:
 };
 
 class Esspresso: public Coffee{
-private:
-    string flavour;
 public:
-    Esspresso(): Coffee(){
+    Esspresso(string flavour): Coffee(){
         this->dType = "Esspresso";
+        this->setFlavour(flavour);
         cout << endl << "Making a cup of espresso" << endl;
+        if (this->flavour != ""){
+            cout << "Adding flavour " << this->flavour << endl;
+        }
         cout << "Grind and brew one scoop of espresso beans." << endl;
     }
 };
@@ -81,17 +87,31 @@ public:
         cout << "3. Americano" << endl;
         cout << "4. Latte" << endl;
         cin >> cType;
+        
         switch (cType) {
-                case 1:
-                    return new Cappuccino();
-                case 2:
-                return new Esspresso();
+                case 1: return new Cappuccino();
+                case 2:return new Esspresso(this->getFlavour());
                 default:{
                     cout << "machine not ready to process your option" << endl;
                     return NULL;
                 }
         }
         return NULL;
+    }
+    string getFlavour(){
+        int fl;
+        cout << "Please select a flavour" << endl;
+        cout << "1. Vanilla" << endl;
+        cout << "2. Caramel" << endl;
+        cout << "3. Cherry" << endl;
+        cin >> fl;
+        switch(fl)
+        {
+            case 1: return "Vanilla";
+            case 2: return "Caramel";
+            case 3: return "Cherry";
+        }
+        return "";
     }
 };
 
